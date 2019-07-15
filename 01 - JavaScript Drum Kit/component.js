@@ -1,24 +1,19 @@
 class DrumKit {
   constructor (element) {
     this.element = element;
-    this.data = this.element.dataset.key;
-    console.log(this.data);
-    
-    // grab reference to keys
-    // add event listener
-    // link the data-key from the keys to the data-key from the audio
-
+    window.addEventListener('keydown', this.drumHit.bind(this))
   }
-  drumSound () {
-    // add class
-    // 
+  drumHit (keypress) {
+    let audio = document.querySelector(`audio[data-key="${keypress.keyCode}"]`)
+    let key = document.querySelectorAll(`.key[data-key="${keypress.keyCode}"]`)
+    if (!audio) return; // so it doesn't return null when wrong key is pressed
+    audio.currentTime = 0;
+    audio.play();
+    key.forEach(key => key.classList.add('playing'))
+    window.addEventListener('transitionend', function(e) {
+      key.forEach(key => key.classList.remove('playing'))
+    })
   }
-
-  keyEffect () {
-    xxx.classList.add('.playing .sound')
-  }
-
-
 }
 
 const drumKeys = document.querySelectorAll('.key');
