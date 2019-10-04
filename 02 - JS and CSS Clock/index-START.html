@@ -62,13 +62,17 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%; /*puts pivot point on far right of hand*/
+      transform: rotate(90deg); /*makes starting point for all hands at noon*/
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
   </style>
 
-  <script>
+ 
+    <script src="index.js"></script>
 
 
-  </script>
 </body>
 </html>
